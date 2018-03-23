@@ -1,3 +1,6 @@
 [submodule "ImageTextRecognition"]
 	path = ImageTextRecognition
 	url = /ImageTextRecognition
+[submodule "OCR-Text"]
+	path = OCR-Text
+	url = https://github.com/dpacmen/OCR-Text.git
