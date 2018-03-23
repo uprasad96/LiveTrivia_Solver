@@ -1,0 +1,3 @@
+[submodule "ImageTextRecognition"]
+	path = ImageTextRecognition
+	url = /ImageTextRecognition
