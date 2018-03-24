@@ -11,7 +11,7 @@ from pprint import pprint
 from threading import Thread
 from collections import deque
 from time import sleep
-        
+
 class GoogleSearch:
     USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/ 58.0.3029.81 Safari/537.36"
     SEARCH_URL = "https://google.com/search"
@@ -22,7 +22,7 @@ class GoogleSearch:
             ('User-Agent', USER_AGENT),
             ("Accept-Language", "en-US,en;q=0.5"),
         ]
-    
+
     def search(self, query, num_results = 10, prefetch_pages = True, prefetch_threads = 10, language = "en"):
         searchResults = []
         pages = int(math.ceil(num_results / float(GoogleSearch.RESULTS_PER_PAGE)));
@@ -58,7 +58,7 @@ class GoogleSearch:
         for thread in fetcher_threads:
             thread.join()
         return SearchResponse(searchResults, total);
-        
+
     def parseResults(self, results):
         searchResults = [];
         for result in results:
@@ -78,7 +78,7 @@ class SearchResult:
         self.url = url
         self.__text = None
         self.__markup = None
-    
+
     def getText(self):
         if self.__text is None:
             soup = BeautifulSoup(self.getMarkup(), "lxml")
@@ -86,7 +86,7 @@ class SearchResult:
                 junk.extract()
                 self.__text = soup.get_text()
         return self.__text
-    
+
     def getMarkup(self):
         if self.__markup is None:
             opener = urllib2.build_opener()
@@ -94,7 +94,7 @@ class SearchResult:
             response = opener.open(self.url);
             self.__markup = response.read()
         return self.__markup
-    
+
     def __str__(self):
         return  str(self.__dict__)
     def __unicode__(self):
