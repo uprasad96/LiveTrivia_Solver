@@ -66,3 +66,11 @@ for op in options:
 
 for ch in choices:
     print ch
+
+# Search google for filtered_ques
+f = open('Results.txt', 'w')
+from googlesearch.googlesearch import GoogleSearch
+response = GoogleSearch().search(filtered_ques)
+for result in response.results:
+    f.write(result.title)
+    f.write(result.getText())
