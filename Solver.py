@@ -39,7 +39,7 @@ for i in xrange(start, len(text)-1):
     else:
         ques += text[i]
 
-print ques
+print "Question is: ", ques, "?"
 
 # clean and remove stop words from Ques
 from nltk.corpus import stopwords
@@ -52,7 +52,7 @@ for w in word_tokens:
     if w not in stop_words:
         filtered_ques += (w + " ")
 
-print filtered_ques
+print "Filtered Ques: ", filtered_ques
 
 options = ""
 for i in xrange(end, len(text)):
@@ -64,13 +64,37 @@ for op in options:
     if len(op) > 0:
         choices.append(op)
 
+print "Choices are :"
 for ch in choices:
     print ch
 
 # Search google for filtered_ques
-f = open('Results.txt', 'w')
+import operator
 from googlesearch.googlesearch import GoogleSearch
 response = GoogleSearch().search(filtered_ques)
+
+filtered_results = []
+stop_words.update(['.','-','?','!',',','...',':',"'s"])
 for result in response.results:
-    f.write(result.title)
-    f.write(result.getText())
+    word_tokens = word_tokenize(result.title)
+    for w in word_tokens:
+        if w not in stop_words:
+            filtered_results.append(w)
+    try:
+        word_tokens = word_tokenize(result.getText())
+        for w in word_tokens:
+            if w not in stop_words:
+                filtered_results.append(w)
+    except UnicodeEncodeError:
+        pass
+
+tf = {0:0, 1:0, 2:0}
+for o in range(3):
+    ch = choices[o]
+    c = ch.split()
+    for ci in c:
+        if ci in filtered_results:
+            tf[o] += 1
+
+ans = max(tf.iteritems(), key=operator.itemgetter(1))[0]
+print "Answer is: ", choices[ans]
