@@ -69,6 +69,7 @@ for ch in choices:
     print ch
 
 # Search google for filtered_ques
+print "Searching...."
 import operator
 from googlesearch.googlesearch import GoogleSearch
 response = GoogleSearch().search(filtered_ques)
@@ -76,6 +77,7 @@ response = GoogleSearch().search(filtered_ques)
 filtered_results = []
 stop_words.update(['.','-','?','!',',','...',':',"'s"])
 for result in response.results:
+    print result.title
     word_tokens = word_tokenize(result.title)
     for w in word_tokens:
         if w not in stop_words:
@@ -93,8 +95,13 @@ for o in range(3):
     ch = choices[o]
     c = ch.split()
     for ci in c:
-        if ci in filtered_results:
-            tf[o] += 1
+        for fi in filtered_results:
+            if ci == fi:
+                tf[o] += 1
+
+for o in range(3):
+    print choices[o], ", Frequency: ", tf[o]
 
 ans = max(tf.iteritems(), key=operator.itemgetter(1))[0]
+freq = max(tf.iteritems(), key=operator.itemgetter(1))[1]
 print "Answer is: ", choices[ans]
