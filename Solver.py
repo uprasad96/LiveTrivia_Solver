@@ -90,8 +90,11 @@ for result in response.results:
     except UnicodeEncodeError:
         pass
 
-tf = {0:0, 1:0, 2:0}
-for o in range(3):
+tf = {}
+for o in range(len(choices)):
+    tf[o] = 0
+
+for o in range(len(choices)):
     ch = choices[o]
     c = ch.split()
     for ci in c:
@@ -99,7 +102,7 @@ for o in range(3):
             if ci == fi:
                 tf[o] += 1
 
-for o in range(3):
+for o in range(len(choices)):
     print choices[o], ", Frequency: ", tf[o]
 
 ans = max(tf.iteritems(), key=operator.itemgetter(1))[0]
