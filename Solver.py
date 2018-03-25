@@ -50,6 +50,7 @@ from nltk.tokenize import word_tokenize
 stop_words = set(stopwords.words('english'))
 stop_words.remove('not')
 stop_words.remove('most')
+stop_words.update(['.','-','?','!',',','...',':',"'s"])
 word_tokens = word_tokenize(ques)
 filtered_ques = ""
 for w in word_tokens:
@@ -93,7 +94,6 @@ from googlesearch.googlesearch import GoogleSearch
 response = GoogleSearch().search(filtered_ques)
 
 filtered_results = []
-stop_words.update(['.','-','?','!',',','...',':',"'s"])
 for result in response.results:
     print result.title
     word_tokens = word_tokenize(result.title)
