@@ -11,6 +11,8 @@ import cv2
 gray = cv2.imread('ss.jpg', 0)
 gray = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
 filename = "ssPreProc.png"
+# cv2.imshow("Processed", gray)
+# cv2.waitKey(0)
 cv2.imwrite(filename, gray)
 # preprocessed image saved as ssPreProc.jpg
 
@@ -46,6 +48,8 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
 stop_words = set(stopwords.words('english'))
+stop_words.remove('not')
+stop_words.remove('most')
 word_tokens = word_tokenize(ques)
 filtered_ques = ""
 for w in word_tokens:
