@@ -54,6 +54,20 @@ word_tokens = word_tokenize(ques)
 filtered_ques = ""
 for w in word_tokens:
     if w not in stop_words:
+        try:
+            w = w.decode('utf-8')
+        except UnicodeEncodeError:
+            wnew = ""
+            for i in w:
+                flag = True
+                try:
+                    i.decode('utf-8')
+                except UnicodeEncodeError:
+                    flag = False
+                    continue
+                if flag == True:
+                    wnew += i
+            w = wnew
         filtered_ques += (w + " ")
 
 print "Filtered Ques: ", filtered_ques
