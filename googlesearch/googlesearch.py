@@ -23,7 +23,7 @@ class GoogleSearch:
             ("Accept-Language", "en-US,en;q=0.5"),
         ]
 
-    def search(self, query, num_results = 10, prefetch_pages = True, prefetch_threads = 10, language = "en"):
+    def search(self, query, num_results = 2, prefetch_pages = True, prefetch_threads = 2, language = "en"):
         searchResults = []
         pages = int(math.ceil(num_results / float(GoogleSearch.RESULTS_PER_PAGE)));
         fetcher_threads = deque([])
