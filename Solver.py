@@ -1,4 +1,6 @@
 # Search phone directory for screenshot
+import datetime
+starttime = datetime.datetime.now()
 import ssReader
 # image saved in current directory as ss.jpg
 
@@ -126,3 +128,6 @@ for o in range(len(choices)):
 ans = max(tf.iteritems(), key=operator.itemgetter(1))[0]
 freq = max(tf.iteritems(), key=operator.itemgetter(1))[1]
 print "Answer is: ", choices[ans]
+endtime = datetime.datetime.now()
+diff = endtime - starttime
+print "Time taken = ", diff.total_seconds()
