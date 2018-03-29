@@ -12,3 +12,13 @@ How to use
 10. It will use a google api and search first 2 webpages with their content for the filtered question.
 11. It will then look for term frequency of the given choices in the retrieved search results.
 12. It then returns the choice with the maximum term frequency which is probably the answer.
+
+# Test Run
+
+![alt text](https://github.com/uprasad96/LiveTrivia_Solver/blob/master/Results/ss1.png)
+
+![alt text](https://github.com/uprasad96/LiveTrivia_Solver/blob/master/Results/ss2.png)
+
+![alt text](https://github.com/uprasad96/LiveTrivia_Solver/blob/master/Results/ss3.png)
+
+![alt text](https://github.com/uprasad96/LiveTrivia_Solver/blob/master/Results/ss4.png)
